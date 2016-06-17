@@ -48,6 +48,9 @@ $app->singleton(
     App\Console\Kernel::class
 );
 
+
+
+
 /*
 |--------------------------------------------------------------------------
 | Register Middleware
@@ -85,6 +88,10 @@ $app->routeMiddleware([
 // $app->register(App\Providers\AppServiceProvider::class);
 // $app->register(App\Providers\AuthServiceProvider::class);
 // $app->register(App\Providers\EventServiceProvider::class);
+/*
+ * //Service Provider for useragent
+ */
+ $app->register( App\Providers\UserAgentServiceProvider::class);
 
 /*
 |--------------------------------------------------------------------------

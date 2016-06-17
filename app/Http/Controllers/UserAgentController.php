@@ -5,34 +5,31 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use phpbrowscap\Browscap;
+use App\Helpers\Contracts\UserAgentContract;
 
 class UserAgentController extends Controller 
 {
 
-    private static $cacheDir = 'cache';
-    private $browscap;
 
     public function __construct()
     {
-         $this->browscap = new Browscap(self::$cacheDir);
-         $this->browscap->doAutoUpdate = false;
     }
     
-    public function index() 
+    public function index(UserAgentContract $userAgent) 
     {
-        $info = $this->browscap->getBrowser();
+        $info = $userAgent->browscap->getBrowser();
         return response()->json($info);
     }
     
-    public function getUserData(Request $request)
+    public function getUserData(Request $request, UserAgentContract $userAgent)
     {
-        $info = $this->browscap->getBrowser($request->input('useragent'));
+        $info = $userAgent->browscap->getBrowser($request->input('useragent'));
         return response()->json($info);
     }
     
-    public function update()
+    public function update(UserAgentContract $userAgent)
     {
-        $this->browscap->updateCache();
+        $userAgent->browscap->updateCache();
     }
 
 }
