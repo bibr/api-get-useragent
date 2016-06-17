@@ -11,6 +11,8 @@
 |
 */
 
-$app->get('/', function () use ($app) {
-    return $app->version();
+$app->group(['middleware' => 'throttle:2,1'], function () use ($app) {
+    $app->get('/', function () use ($app) {
+        return $app->version();
+    });
 });
