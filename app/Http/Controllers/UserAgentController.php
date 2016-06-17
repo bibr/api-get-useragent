@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use phpbrowscap\Browscap;
 use App\Helpers\Contracts\UserAgentContract;
 
 class UserAgentController extends Controller 
